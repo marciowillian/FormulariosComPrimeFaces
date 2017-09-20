@@ -8,7 +8,38 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+    <script type="application/javascript">
+        PrimeFaces.locales['pt'] = {
+            closeText : 'Fechar',
+            prevText : 'Anterior',
+            nextText : 'Próximo',
+            currentText : 'Começo',
+            monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+                'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+                'Novembro', 'Dezembro' ],
+            monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+                'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+            dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
+                'Sexta', 'Sábado' ],
+            dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
+            dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+            weekHeader : 'Semana',
+            firstDay : 0,
+            isRTL : false,
+            showMonthAfterYear : false,
+            yearSuffix : '',
+            timeOnlyTitle : 'Só Horas',
+            timeText : 'Tempo',
+            hourText : 'Hora',
+            minuteText : 'Minuto',
+            secondText : 'Segundo',
+            ampm : false,
+            month : 'Mês',
+            week : 'Semana',
+            day : 'Dia',
+            allDayText : 'Todo o Dia'
+        };
+    </script>
 
 
 </h:head>
@@ -17,9 +48,8 @@
         <p:messages/>
 
         <h2>Cadastro de contrato de treinamentos </h2>
-
-        <u><p:outputLabel/></u>
-        <p:panelGrid styleClass="ui-noborder" columns="2">
+<!--styleClass="ui-noborder"-->
+        <h:panelGrid  columns="2">
             <p:outputLabel value="Razão social" for="razaoSocial"/>
             <p:inputText id="razaoSocial" value="#{perfilUsuarioBean.razaoSocial}" required="true"/>
 
@@ -27,7 +57,9 @@
             <p:inputMask id="cnpj" value="#{perfilUsuarioBean.cnpj}" mask="99.999.999/9999-99" required="true"/>
 
             <p:outputLabel value="Cidade do contrato" for="cidadeContrato"/>
-            <p:inputText id="cidadeContrato" value="#{perfilUsuarioBean.cidadeContrato}" required="true"/>
+            <p:autoComplete id="cidadeContrato" value="#{perfilUsuarioBean.cidades}"
+                            completeMethod="#{perfilUsuarioBean.sugerirCidades}"
+                            forceSelection="true" minQueryLength="1"/>
 
             <p:outputLabel value="Modalidade" for="modalidade"/>
             <p:selectOneRadio id="modalidade" required="true" value="#{perfilUsuarioBean.modalidade}">
@@ -36,10 +68,13 @@
             </p:selectOneRadio>
 
             <p:outputLabel value="Data do contrato" for="dataContrato"/>
-            <p:inputMask id="dataContrato" value="#{perfilUsuarioBean.dataContrato}" required="true" mask="**/**/****"/>
+            <p:calendar id="dataContrato" required="true"
+                        value="#{perfilUsuarioBean.dataContrato}" pattern="dd/mm/yyyy"
+                        readonlyInput="true" navigator="false" pages="1" mode="popup"
+                        maxdate="#{perfilUsuarioBean.dataHoje}" locale="pt" />
 
             <p:outputLabel value="Valor do contrato" for="valorContrato"/>
-            <p:inputMask id="valorContrato" value="#{perfilUsuarioBean.valorContrato}" required="true" mask="R$ 999.999,99"/>
+            <p:inputText id="valorContrato" value="R$ #{perfilUsuarioBean.valorContrato}" required="true"/>
 
             <p:outputLabel value="Método de pagamento" for="metodoPagamento"/>
             <p:selectOneMenu id="metodoPagamento" required="true" value="#{perfilUsuarioBean.metodoPagamento}">
@@ -70,7 +105,7 @@
                 <f:selectItem itemLabel="Gerenciamento Ágil de Projetos com Scrum" itemValue="4"/>
             </p:selectManyCheckbox>
             </h:panelGroup>
-        </p:panelGrid>
+        </h:panelGrid>
 
         <p:commandButton action="#{perfilUsuarioBean.cadastrar}" value="Cadastrar" update="@form"/>
     </h:form>

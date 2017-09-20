@@ -6,6 +6,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import java.io.DataInput;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @ManagedBean
 @ViewScoped
@@ -21,6 +24,35 @@ public class PerfilUsuarioBean implements Serializable {
     private String metodoPagamento;
     private String formaPagamento;
     private String cursoContratado;
+    private String cidades;
+
+    public Date getDataHoje(){
+        return new Date();
+    }
+
+    private List<String> cidadesEx = new ArrayList<>();
+
+    public PerfilUsuarioBean() {
+        cidadesEx.add("São Luis");
+        cidadesEx.add("São Paulo");
+        cidadesEx.add("Rio de Janeiro");
+        cidadesEx.add("Paraná");
+        cidadesEx.add("Alcantara");
+        cidadesEx.add("Raposa");
+        cidadesEx.add("São José de Ribamar");
+    }
+
+    public List<String> sugerirCidades(String consulta){
+        List<String> cidadesSugeridas = new ArrayList<>();
+
+        for(String cidades : this.cidadesEx) {
+            if(cidades.toLowerCase().startsWith(consulta.toLowerCase())) {
+                cidadesSugeridas.add(cidades);
+            }
+        }
+
+        return cidadesSugeridas;
+    }
 
     public void cadastrar(){
         System.out.println("Razão social: " + this.razaoSocial);
@@ -106,5 +138,13 @@ public class PerfilUsuarioBean implements Serializable {
 
     public void setCursoContratado(String cursoContratado) {
         this.cursoContratado = cursoContratado;
+    }
+
+    public String getCidades() {
+        return cidades;
+    }
+
+    public void setCidades(String cidades) {
+        this.cidades = cidades;
     }
 }
