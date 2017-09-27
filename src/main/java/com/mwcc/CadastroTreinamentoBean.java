@@ -12,7 +12,7 @@ import java.util.List;
 
 @ManagedBean
 @ViewScoped
-public class PerfilUsuarioBean implements Serializable {
+public class CadastroTreinamentoBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String razaoSocial;
@@ -31,8 +31,10 @@ public class PerfilUsuarioBean implements Serializable {
     }
 
     private List<String> cidadesEx = new ArrayList<>();
+    private List<String> metodosPagamentos = new ArrayList<>();
+    private List<String> formasPagamentos = new ArrayList<>();
 
-    public PerfilUsuarioBean() {
+    public CadastroTreinamentoBean() {
         cidadesEx.add("São Luis");
         cidadesEx.add("São Paulo");
         cidadesEx.add("Rio de Janeiro");
@@ -40,6 +42,36 @@ public class PerfilUsuarioBean implements Serializable {
         cidadesEx.add("Alcantara");
         cidadesEx.add("Raposa");
         cidadesEx.add("São José de Ribamar");
+
+        //Tipos de pagamento
+
+        metodosPagamentos.add("CR");
+        metodosPagamentos.add("CH");
+        metodosPagamentos.add("BO");
+    }
+
+
+    public void carregarPagamentos(){
+        formasPagamentos.clear();
+
+        if ("CR".equals(formaPagamento)){
+            formasPagamentos.add("Á vista");
+            formasPagamentos.add("1x");
+            formasPagamentos.add("2x");
+            formasPagamentos.add("3x");
+            formasPagamentos.add("4x");
+            formasPagamentos.add("5x");
+            formasPagamentos.add("6x");
+        }else {
+            if ("CH".equals(formaPagamento)){
+                formasPagamentos.add("Á vista");
+                formasPagamentos.add("Entrada + 30 dias");
+            }else{
+                if ("BO".equals(formaPagamento)){
+                    formasPagamentos.add("Á vista");
+                }
+            }
+        }
     }
 
     public List<String> sugerirCidades(String consulta){
@@ -146,5 +178,29 @@ public class PerfilUsuarioBean implements Serializable {
 
     public void setCidades(String cidades) {
         this.cidades = cidades;
+    }
+
+    public List<String> getCidadesEx() {
+        return cidadesEx;
+    }
+
+    public void setCidadesEx(List<String> cidadesEx) {
+        this.cidadesEx = cidadesEx;
+    }
+
+    public List<String> getMetodosPagamentos() {
+        return metodosPagamentos;
+    }
+
+    public void setMetodosPagamentos(List<String> metodosPagamentos) {
+        this.metodosPagamentos = metodosPagamentos;
+    }
+
+    public List<String> getFormasPagamentos() {
+        return formasPagamentos;
+    }
+
+    public void setFormasPagamentos(List<String> formasPagamentos) {
+        this.formasPagamentos = formasPagamentos;
     }
 }
