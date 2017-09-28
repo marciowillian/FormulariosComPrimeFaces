@@ -78,22 +78,25 @@
 
             <p:outputLabel value="Método de pagamento" for="metodoPag"/>
             <p:selectOneMenu id="metodoPag" value="#{cadastroTreinamentoBean.metodoPagamento}">
-                <p:ajax event="change" process="metodoPag" update="formaPag" listener="#{cadastroTreinamentoBean.carregarPagamentos}"/>
+                <p:ajax event="change" process="metodoPag" update="formaPag"
+                        listener="#{cadastroTreinamentoBean.carregarPagamentos}"/>
                 <f:selectItem itemLabel="Selecione"/>
-                <f:selectItems value="#{cadastroTreinamentoBean.metodosPagamentos}" var="metodoPag" itemLabel="#{metodoPag}" itemValue="#{metodoPag}"/>
+                <f:selectItems value="#{cadastroTreinamentoBean.metodosPagamentos}" var="metodoPag"
+                               itemLabel="#{metodoPag}" itemValue="#{metodoPag}"/>
             </p:selectOneMenu>
 
             <p:outputLabel value="Forma de pagamento" for="formaPag"/>
             <p:selectOneMenu id="formaPag" value="#{cadastroTreinamentoBean.formaPagamento}">
                 <f:selectItem itemLabel="Selecione"/>
-                <f:selectItems value="#{cadastroTreinamentoBean.formasPagamentos}" var="formaPag" itemLabel="#{formaPag}" itemValue="#{formaPag}"/>
+                <f:selectItems value="#{cadastroTreinamentoBean.formasPagamentos}" var="formaPag"
+                               itemLabel="#{formaPag}" itemValue="#{formaPag}"/>
             </p:selectOneMenu>
 
             <h:panelGroup>
                 <h1/>
                 <p:outputLabel value="Cursos contratados" for="cursosContratados"/>
                 <h1/>
-                <p:selectManyCheckbox id="cursosContratados" value="#{cadastroTreinamentoBean.cursoContratado}"
+                <p:selectManyCheckbox id="cursosContratados" value="#{cadastroTreinamentoBean.cursos}" required="true"
                                       layout="pageDirection">
                     <f:selectItem itemLabel="Fundamentos Java e Orientação a Objetos" itemValue="1"/>
                     <f:selectItem itemLabel="Desenvolvimento Web com JSF 2" itemValue="2"/>

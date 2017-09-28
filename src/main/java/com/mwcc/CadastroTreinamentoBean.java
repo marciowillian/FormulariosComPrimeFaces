@@ -16,9 +16,9 @@ public class CadastroTreinamentoBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String razaoSocial;
-    private Integer cnpj;
+    private String cnpj;
     private String cidadeContrato;
-    private Integer modalidade;
+    private String modalidade;
     private DataInput dataContrato;
     private Integer valorContrato;
     private String metodoPagamento;
@@ -33,6 +33,7 @@ public class CadastroTreinamentoBean implements Serializable {
     private List<String> cidadesEx = new ArrayList<>();
     private List<String> metodosPagamentos = new ArrayList<>();
     private List<String> formasPagamentos = new ArrayList<>();
+    private List<String> cursos = new ArrayList<>();
 
     public CadastroTreinamentoBean() {
         cidadesEx.add("São Luis");
@@ -45,16 +46,16 @@ public class CadastroTreinamentoBean implements Serializable {
 
         //Tipos de pagamento
 
-        metodosPagamentos.add("CR");
-        metodosPagamentos.add("CH");
-        metodosPagamentos.add("BO");
+        metodosPagamentos.add("Credito");
+        metodosPagamentos.add("Cheque");
+        metodosPagamentos.add("Boleto");
     }
 
 
     public void carregarPagamentos(){
         formasPagamentos.clear();
 
-        if ("CR".equals(formaPagamento)){
+        if ("Credito".equals(metodoPagamento)){
             formasPagamentos.add("Á vista");
             formasPagamentos.add("1x");
             formasPagamentos.add("2x");
@@ -63,11 +64,11 @@ public class CadastroTreinamentoBean implements Serializable {
             formasPagamentos.add("5x");
             formasPagamentos.add("6x");
         }else {
-            if ("CH".equals(formaPagamento)){
+            if ("Cheque".equals(metodoPagamento)){
                 formasPagamentos.add("Á vista");
                 formasPagamentos.add("Entrada + 30 dias");
             }else{
-                if ("BO".equals(formaPagamento)){
+                if ("Boleto".equals(metodoPagamento)){
                     formasPagamentos.add("Á vista");
                 }
             }
@@ -95,7 +96,10 @@ public class CadastroTreinamentoBean implements Serializable {
         System.out.println("Valor do contrato: " + this.valorContrato);
         System.out.println("Metodo de pagamento: " + this.metodoPagamento);
         System.out.println("Forma de pagamento: " + this.formaPagamento);
-        System.out.println("Curso contratado: " + this.cursoContratado);
+
+        for (String curso : cursos){
+            System.out.println("Cursos: " + curso);
+        }
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastrado com sucesso!"));
     }
@@ -108,11 +112,11 @@ public class CadastroTreinamentoBean implements Serializable {
         this.razaoSocial = razaoSocial;
     }
 
-    public Integer getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(Integer cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -124,11 +128,11 @@ public class CadastroTreinamentoBean implements Serializable {
         this.cidadeContrato = cidadeContrato;
     }
 
-    public Integer getModalidade() {
+    public String getModalidade() {
         return modalidade;
     }
 
-    public void setModalidade(Integer modalidade) {
+    public void setModalidade(String modalidade) {
         this.modalidade = modalidade;
     }
 
@@ -202,5 +206,13 @@ public class CadastroTreinamentoBean implements Serializable {
 
     public void setFormasPagamentos(List<String> formasPagamentos) {
         this.formasPagamentos = formasPagamentos;
+    }
+
+    public List<String> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<String> cursos) {
+        this.cursos = cursos;
     }
 }
