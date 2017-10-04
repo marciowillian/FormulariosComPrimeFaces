@@ -33,7 +33,17 @@ public class CadastroTreinamentoBean implements Serializable {
     private List<String> cidadesEx = new ArrayList<>();
     private List<String> metodosPagamentos = new ArrayList<>();
     private List<String> formasPagamentos = new ArrayList<>();
-    private List<String> cursos = new ArrayList<>();
+    private List<String> CursosContratados = new ArrayList<>();
+
+    public static final List<Curso> CURSOS = new ArrayList<>();
+
+    static{
+        CURSOS.add(new Curso(1, "Fundamentos Java e Orientação a Objetos"));
+        CURSOS.add(new Curso(2, "Desenvolvimento Web com JSF 2"));
+        CURSOS.add(new Curso(3, "Persistência de Dados com JPA 2 e Hibernate"));
+        CURSOS.add(new Curso(4, "Gerenciamento Ágil de Projetos com Scrum"));
+    }
+    private List<String> cursosContratados;
 
     public CadastroTreinamentoBean() {
         cidadesEx.add("São Luis");
@@ -89,16 +99,16 @@ public class CadastroTreinamentoBean implements Serializable {
 
     public void cadastrar(){
         System.out.println("Razão social: " + this.razaoSocial);
-        System.out.println("CNPJ: " + this.cnpj);
+      /*  System.out.println("CNPJ: " + this.cnpj);
         System.out.println("Cidade do contrato: " + this.cidadeContrato);
         System.out.println("Modalidade: " + this.modalidade);
         System.out.println("Data do contrato: " + this.dataContrato);
         System.out.println("Valor do contrato: " + this.valorContrato);
         System.out.println("Metodo de pagamento: " + this.metodoPagamento);
-        System.out.println("Forma de pagamento: " + this.formaPagamento);
+        System.out.println("Forma de pagamento: " + this.formaPagamento);*/
 
-        for (String curso : cursos){
-            System.out.println("Cursos: " + curso);
+        for (String cursos : cursosContratados){
+            System.out.println("Cursos: " + cursos);
         }
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastrado com sucesso!"));
@@ -208,11 +218,11 @@ public class CadastroTreinamentoBean implements Serializable {
         this.formasPagamentos = formasPagamentos;
     }
 
-    public List<String> getCursos() {
-        return cursos;
+    public List<String> getCursosContratados() {
+        return cursosContratados;
     }
 
-    public void setCursos(List<String> cursos) {
-        this.cursos = cursos;
+    public void setCursosContratados(List<String> cursosContratados) {
+        this.cursosContratados = cursosContratados;
     }
 }

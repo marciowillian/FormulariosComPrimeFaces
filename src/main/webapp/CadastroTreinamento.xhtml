@@ -74,7 +74,7 @@
                         maxdate="#{cadastroTreinamentoBean.dataHoje}" locale="pt"/>
 
             <p:outputLabel value="Valor do contrato" for="valorContrato"/>
-            <p:inputText id="valorContrato" value="R$ #{cadastroTreinamentoBean.valorContrato}" required="true"/>
+            <p:inputText id="valorContrato" value="#{cadastroTreinamentoBean.valorContrato}" required="true"/>
 
             <p:outputLabel value="Método de pagamento" for="metodoPag"/>
             <p:selectOneMenu id="metodoPag" value="#{cadastroTreinamentoBean.metodoPagamento}">
@@ -96,8 +96,8 @@
                 <h1/>
                 <p:outputLabel value="Cursos contratados" for="cursosContratados"/>
                 <h1/>
-                <p:selectManyCheckbox id="cursosContratados" value="#{cadastroTreinamentoBean.cursos}" required="true"
-                                      layout="pageDirection">
+
+                <p:selectManyCheckbox id="cursosContratados" value="#{cadastroTreinamentoBean.cursosContratados}" layout="pageDirection" required="true">
                     <f:selectItem itemLabel="Fundamentos Java e Orientação a Objetos" itemValue="1"/>
                     <f:selectItem itemLabel="Desenvolvimento Web com JSF 2" itemValue="2"/>
                     <f:selectItem itemLabel="Persistência de Dados com JPA 2 e Hibernate" itemValue="3"/>
