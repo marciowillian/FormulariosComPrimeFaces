@@ -1,14 +1,14 @@
 package com.mwcc;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import java.io.DataInput;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -19,7 +19,7 @@ public class CadastroTreinamentoBean implements Serializable {
     private String cnpj;
     private String cidadeContrato;
     private String modalidade;
-    private DataInput dataContrato;
+    private Date dataContrato;
     private Integer valorContrato;
     private String metodoPagamento;
     private String formaPagamento;
@@ -29,6 +29,11 @@ public class CadastroTreinamentoBean implements Serializable {
     public Date getDataHoje(){
         return new Date();
     }
+    
+    //Dados Fictcios    
+    private List<Contrato> Contratos = new ArrayList<>();
+    
+    
 
     private List<String> cidadesEx = new ArrayList<>();
     private List<String> metodosPagamentos = new ArrayList<>();
@@ -59,9 +64,14 @@ public class CadastroTreinamentoBean implements Serializable {
         metodosPagamentos.add("Credito");
         metodosPagamentos.add("Cheque");
         metodosPagamentos.add("Boleto");
+        
+        for(int i = 0; i < 50; i++) {
+        	Contratos.add(new Contrato("MW-tec", "99.999.999/9999-99", "Sao luis", "EAD", "10/10/10",1500 ,
+        		"A Vista", "Cartao", "Sao luis", "Sao luis"));
+        }
     }
-
-
+    
+    
     public void carregarPagamentos(){
         formasPagamentos.clear();
 
@@ -99,13 +109,13 @@ public class CadastroTreinamentoBean implements Serializable {
 
     public void cadastrar(){
         System.out.println("Razão social: " + this.razaoSocial);
-      /*  System.out.println("CNPJ: " + this.cnpj);
+        System.out.println("CNPJ: " + this.cnpj);
         System.out.println("Cidade do contrato: " + this.cidadeContrato);
         System.out.println("Modalidade: " + this.modalidade);
         System.out.println("Data do contrato: " + this.dataContrato);
         System.out.println("Valor do contrato: " + this.valorContrato);
         System.out.println("Metodo de pagamento: " + this.metodoPagamento);
-        System.out.println("Forma de pagamento: " + this.formaPagamento);*/
+        System.out.println("Forma de pagamento: " + this.formaPagamento);
 
         for (String cursos : cursosContratados){
             System.out.println("Cursos: " + cursos);
@@ -146,11 +156,11 @@ public class CadastroTreinamentoBean implements Serializable {
         this.modalidade = modalidade;
     }
 
-    public DataInput getDataContrato() {
+    public Date getDataContrato() {
         return dataContrato;
     }
 
-    public void setDataContrato(DataInput dataContrato) {
+    public void setDataContrato(Date dataContrato) {
         this.dataContrato = dataContrato;
     }
 
@@ -225,4 +235,17 @@ public class CadastroTreinamentoBean implements Serializable {
     public void setCursosContratados(List<String> cursosContratados) {
         this.cursosContratados = cursosContratados;
     }
+
+
+	public List<Contrato> getContratos() {
+		return Contratos;
+	}
+
+
+	public void setContratos(List<Contrato> contratos) {
+		Contratos = contratos;
+	}
+    
+  
+    
 }
